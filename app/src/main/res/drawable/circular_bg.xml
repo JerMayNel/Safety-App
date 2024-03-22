@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/drawable/circular_bg.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+
+    <!-- Background color -->
+    <solid android:color="#FF4081" />
+
+    <!-- Stroke (optional) -->
+    <!-- <stroke
+        android:width="2dp"
+        android:color="#FF0000" /> -->
+
+    <!-- Corner radius (optional, if you want a rounded circle) -->
+    <!-- <corners android:radius="5dp" /> -->
+
+    <!-- Padding (optional) -->
+    <!-- <padding
+        android:left="5dp"
+        android:top="5dp"
+        android:right="5dp"
+        android:bottom="5dp" /> -->
+</shape>
