@@ -109,7 +109,7 @@
             android:drawableLeft="@drawable/baseline_lock_24" />
 
         <Button
-            android:id="@+id/sign_up_btn"
+            android:id="@+id/create_account_Btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="90dp"

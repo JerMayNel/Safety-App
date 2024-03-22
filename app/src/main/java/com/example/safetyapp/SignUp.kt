@@ -19,6 +19,7 @@ class SignUp : AppCompatActivity() {
             insets
         }
         setSignInButtonClickListener()
+        setCreateAccountButtonClickListener()
     }
 
     private fun setSignInButtonClickListener() {
@@ -26,6 +27,15 @@ class SignUp : AppCompatActivity() {
         signInButton.setOnClickListener {
             // Start SignUp activity when SignIn_btn is clicked
             startActivity(Intent(this@SignUp, LogIn::class.java))
+        }
+    }
+
+    private fun setCreateAccountButtonClickListener() {
+        val CreateAccountButton = findViewById<Button>(R.id.create_account_Btn)
+        CreateAccountButton.setOnClickListener {
+            // Start AddContacts activity when button is clicked
+            startActivity(Intent(this@SignUp, AddTrustedContacts::class.java))
+
         }
     }
 }
