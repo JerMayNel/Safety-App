@@ -9,6 +9,7 @@
     tools:context=".AddTrustedContacts">
 
     <LinearLayout
+        android:id="@+id/contentLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -30,73 +31,86 @@
             android:layout_height="76dp"
             android:layout_gravity="start"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="sans-serif"
             android:text="Add your trusted contacts"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="30sp"
             android:textStyle="bold" />
 
-        <!--TODO: Create contacts based on database, also scrollview -->
-
-        <include layout="@layout/contacts_recycler_row"
+        <!-- ScrollView for contacts_recycler_row -->
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            />
-        <include layout="@layout/contacts_recycler_row"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-        />
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="60dp">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/AddContactsButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            app:srcCompat="@drawable/baseline_add_24"
-            android:backgroundTint="@color/cyan"
-            android:layout_marginStart="23mm"
-            android:layout_marginBottom="16dp"
-            app:tint="@color/backgroundcolor"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="35mm"
-            android:gravity="center">
-
-            <Button
-                android:id="@+id/maybe_later_btn"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:fontFamily="sans-serif"
-                android:text="Maybe Later"
-                android:textStyle="bold"
-                android:textColor="@android:color/white"
-                android:background="@drawable/button_border"/>
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/add_btn"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:backgroundTint="@color/cyan"
-                android:text="Add"
-                android:textColor="@color/backgroundcolor"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                />
+                <include layout="@layout/contacts_recycler_row"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp" />
+                <include layout="@layout/contacts_recycler_row"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp" />
 
-        </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
 
     </LinearLayout>
+
+    <!-- Buttons Layout -->
+    <LinearLayout
+        android:id="@+id/buttonsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/maybe_later_btn"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="sans-serif"
+            android:text="Maybe Later"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:background="@drawable/button_border"/>
+
+        <Button
+            android:id="@+id/add_btn"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/cyan"
+            android:text="Add"
+            android:textColor="@color/backgroundcolor"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp" />
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/AddContactsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:srcCompat="@drawable/baseline_add_24"
+        android:backgroundTint="@color/cyan"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="70dp"
+        android:layout_marginEnd="30dp"
+        app:tint="@color/backgroundcolor"/>
+
 </RelativeLayout>

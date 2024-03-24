@@ -21,6 +21,7 @@ class LogIn : AppCompatActivity() {
         }
         setSignUpButtonClickListener()
         setForgotButtonClickListener()
+        setLoginButtonClickListener()
     }
 
     private fun setSignUpButtonClickListener() {
@@ -39,4 +40,15 @@ class LogIn : AppCompatActivity() {
 
         }
     }
+
+    private fun setLoginButtonClickListener() {
+        val LoginButton = findViewById<Button>(R.id.login_btn)
+        LoginButton.setOnClickListener {
+            // Start LogIn activity when submit_btn is clicked
+            startActivity(Intent(this@LogIn, MainScreen::class.java))
+
+        }
+    }
+
+
 }
