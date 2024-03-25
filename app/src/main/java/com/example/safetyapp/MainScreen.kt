@@ -28,6 +28,8 @@ class MainScreen : AppCompatActivity() {
         }
 
 
+
+
         val homelayout = findViewById<LinearLayout>(R.id.home_layout)
         val contactslayout = findViewById<LinearLayout>(R.id.contacts_layout)
         val locationlayout = findViewById<LinearLayout>(R.id.location_layout)
@@ -183,14 +185,8 @@ class MainScreen : AppCompatActivity() {
 
             }
 
-            val linearLayout = findViewById<LinearLayout>(R.id.edit_profile_button)
-            linearLayout.setOnClickListener {
-                // Open your activity here
-                val intent = Intent(this, EditMyProfile::class.java)
-                startActivity(intent)
-            }
         }
 
-
     }
+    
 }
