@@ -8,4 +8,8 @@
     <color name="dark_blue">#222430</color>
     <color name="off_white">#F5F5F5</color>
     <color name="backgroundcolor">#222430</color>
+    <color name="edit_profile_color">#6124b1</color>
+    <color name="about_us_color">#E6A326</color>
+    <color name="log_out_color">#D95F69</color>
+
 </resources>

@@ -1,5 +1,6 @@
 package com.example.safetyapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
@@ -25,6 +26,7 @@ class MainScreen : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
 
         val homelayout = findViewById<LinearLayout>(R.id.home_layout)
         val contactslayout = findViewById<LinearLayout>(R.id.contacts_layout)
@@ -179,6 +181,13 @@ class MainScreen : AppCompatActivity() {
 
                 selectedTab = 4
 
+            }
+
+            val linearLayout = findViewById<LinearLayout>(R.id.edit_profile_button)
+            linearLayout.setOnClickListener {
+                // Open your activity here
+                val intent = Intent(this, EditMyProfile::class.java)
+                startActivity(intent)
             }
         }
 

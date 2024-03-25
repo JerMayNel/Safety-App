@@ -27,7 +27,7 @@
         android:paddingBottom="15dp"
         android:elevation="10dp"
         android:gravity="center"
-        android:background="#1f1f1f"
+        android:background="#1AFFFFFF"
         android:layout_alignParentBottom="true"
         tools:targetApi="lollipop">
         
@@ -44,7 +44,7 @@
             
             <ImageView
                 android:id="@+id/home_image"
-                android:layout_width="20dp"
+                android:layout_width="25dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:src="@drawable/selected_shield_icon"/>
@@ -74,7 +74,7 @@
 
             <ImageView
                 android:id="@+id/contacts_image"
-                android:layout_width="20dp"
+                android:layout_width="25dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:src="@drawable/contacts_icon"/>
@@ -105,7 +105,7 @@
 
             <ImageView
                 android:id="@+id/location_image"
-                android:layout_width="20dp"
+                android:layout_width="25dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:src="@drawable/location_icon"/>
@@ -136,7 +136,7 @@
 
             <ImageView
                 android:id="@+id/profile_image"
-                android:layout_width="20dp"
+                android:layout_width="25dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:src="@drawable/profile_icon"/>
