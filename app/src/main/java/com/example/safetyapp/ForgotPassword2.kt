@@ -37,7 +37,7 @@ class ForgotPassword2 : AppCompatActivity() {
         val SubmitButton = findViewById<Button>(R.id.submit_btn)
         SubmitButton.setOnClickListener {
             // Start LogIn activity when submit_btn is clicked
-            startActivity(Intent(this@ForgotPassword2, LogIn::class.java))
+            startActivity(Intent(this@ForgotPassword2, LogInAcitvity::class.java))
 
         }
     }

@@ -28,7 +28,7 @@ class ForgotPassword1 : AppCompatActivity() {
         val BackButton = findViewById<ImageButton>(R.id.back_button)
         BackButton.setOnClickListener {
             // Start LogIn activity when back_button is clicked
-            startActivity(Intent(this@ForgotPassword1, LogIn::class.java))
+            startActivity(Intent(this@ForgotPassword1, LogInAcitvity::class.java))
 
         }
     }

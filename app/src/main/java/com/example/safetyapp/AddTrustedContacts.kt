@@ -27,7 +27,7 @@ class AddTrustedContacts : AppCompatActivity() {
         val BackButton = findViewById<ImageButton>(R.id.back_button)
         BackButton.setOnClickListener {
             // Start SignUp activity when back_button is clicked
-            startActivity(Intent(this@AddTrustedContacts, SignUp::class.java))
+            startActivity(Intent(this@AddTrustedContacts, SignUpActivity::class.java))
 
         }
     }
