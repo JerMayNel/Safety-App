@@ -26,6 +26,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:text="Kaedehara Kazuha"
+            android:textColor="#FFFFFF"
             android:textSize="22dp"
             android:textStyle="bold"/>
         
@@ -36,7 +37,7 @@
             android:textColor="#817E89"
             android:text="09987654321"
             android:textSize="12sp"/>
-            
+
         <LinearLayout
             android:id="@+id/edit_profile_button"
             android:background="@drawable/round_back_button"
@@ -48,12 +49,12 @@
             android:orientation="vertical"
             android:padding="15dp"
             android:clickable="true"
-            android:focusable="true">
-            
+            android:onClick="EditProfile">
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                
+
                 <ImageView
                     android:id="@+id/edit_profile_icon"
                     android:layout_width="40dp"
@@ -130,6 +131,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/logout"
             android:background="@drawable/round_back_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -139,7 +141,8 @@
             android:orientation="vertical"
             android:padding="15dp"
             android:clickable="true"
-            android:focusable="true">
+            android:focusable="true"
+            android:onClick="Logout">>
 
             <RelativeLayout
                 android:layout_width="match_parent"

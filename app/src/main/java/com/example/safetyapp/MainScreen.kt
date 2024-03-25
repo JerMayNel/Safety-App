@@ -1,13 +1,17 @@
 package com.example.safetyapp
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.ScaleAnimation
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -16,7 +20,9 @@ import androidx.core.view.WindowInsetsCompat
 class MainScreen : AppCompatActivity() {
 
     private var selectedTab = 1 // Use var instead of int for Kotlin
-
+    private lateinit var dialog: Dialog
+    private lateinit var btndialogCancel: Button
+    private lateinit var btnDialogLogout: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -27,8 +33,25 @@ class MainScreen : AppCompatActivity() {
             insets
         }
 
+        dialog = Dialog(this)
+        dialog.setContentView(R.layout.log_out_dialog_box)
+        dialog.window?.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialog.window?.setBackgroundDrawable(getDrawable(R.drawable.logout_dialog_bg))
+        dialog.setCancelable(false)
 
+        btndialogCancel = dialog.findViewById(R.id.cancel_button)
+        btnDialogLogout = dialog.findViewById(R.id.logout_button)
 
+        btndialogCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        btnDialogLogout.setOnClickListener {
+            val intent = Intent(this, LogIn::class.java)
+            startActivity(intent)
+            Toast.makeText(this, "Logout Successful!", Toast.LENGTH_SHORT).show()
+            dialog.dismiss()
+        }
 
         val homelayout = findViewById<LinearLayout>(R.id.home_layout)
         val contactslayout = findViewById<LinearLayout>(R.id.contacts_layout)
@@ -173,7 +196,7 @@ class MainScreen : AppCompatActivity() {
                 locationlayout.setBackgroundColor(resources.getColor(android.R.color.transparent))
 
                 profiletext.visibility = View.VISIBLE
-                profileimage.setImageResource(R.drawable.selected_location_icon)
+                profileimage.setImageResource(R.drawable.selected_profile_icon)
                 profilelayout.setBackgroundResource(R.drawable.round_back_shield_100)
 
                 val scaleAnimation = ScaleAnimation(0.8f, 1.0f, 1f, 1f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f)
@@ -188,5 +211,12 @@ class MainScreen : AppCompatActivity() {
         }
 
     }
-    
+    fun EditProfile(view: View?) {
+        val intent = Intent(this, EditMyProfile::class.java)
+        startActivity(intent)
+    }
+
+    fun Logout(view: View?) {
+        dialog.show()
+    }
 }
