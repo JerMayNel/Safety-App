@@ -53,6 +53,8 @@ class MainScreen : AppCompatActivity() {
         }
 
         btnDialogLogout.setOnClickListener {
+            val auth = FirebaseAuth.getInstance()
+            auth.signOut()
             val intent = Intent(this, LogInActivity::class.java)
             startActivity(intent)
             Toast.makeText(this, "Logout Successful!", Toast.LENGTH_SHORT).show()
@@ -234,14 +236,6 @@ class MainScreen : AppCompatActivity() {
     }
 
     fun Logout(view: View?) {
-        val auth = FirebaseAuth.getInstance()
-
-        auth.signOut()
-
-        val intent = Intent(this, LogInActivity::class.java)
-        startActivity(intent)
-        finish()
-        Toast.makeText(this, "Logout Successfully", Toast.LENGTH_SHORT).show()
-        dialog.dismiss()
+        dialog.show()
     }
 }
