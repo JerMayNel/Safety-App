@@ -15,6 +15,7 @@
         android:layout_marginTop="30dp"
         android:orientation="vertical">
 
+        <!-- ScrollView for contacts_recycler_row -->
         <TextView
             android:id="@+id/ContactsText"
             android:layout_width="wrap_content"
@@ -28,7 +29,6 @@
             android:textSize="30sp"
             android:textStyle="bold" />
 
-        <!-- ScrollView for contacts_recycler_row -->
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

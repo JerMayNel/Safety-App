@@ -59,7 +59,7 @@
                 android:padding="15dp"
                 android:text="Cancel"
                 android:textColor="@color/cyan"
-                android:textSize="12sp"
+                android:textSize="15sp"
                 app:backgroundTint="@android:color/transparent"
                 app:strokeColor="@color/cyan"
                 app:strokeWidth="2dp" />
@@ -73,7 +73,7 @@
                 android:padding="15dp"
                 android:text="Log Out"
                 android:textColor="@color/backgroundcolor"
-                android:textSize="12sp"
+                android:textSize="15sp"
                 app:backgroundTint="@color/cyan" />
 
 

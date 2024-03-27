@@ -14,4 +14,11 @@
     <style name="Theme.SafetyApp" parent="Base.Theme.SafetyApp">
         <!-- Add any additional customizations specific to this theme here. -->
     </style>
+
+    <style name='Switch' parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">@color/cyan</item>
+        <item name="colorSwitchThumbNormal">#FFFFFF</item>
+        <item name="android:colorForeground">#99FFFFFF</item>
+
+    </style>
 </resources>

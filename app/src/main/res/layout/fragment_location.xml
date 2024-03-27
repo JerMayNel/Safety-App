@@ -17,17 +17,17 @@
         android:orientation="horizontal"
         android:padding="20dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Location"
-            android:textColor="@color/white"
-            android:textSize="36sp"/>
-
-        <Switch
+        <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switch1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:text="Location"
+            android:textColor="@color/white"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:switchMinWidth="50dp"
+            android:theme="@style/Switch"
             tools:ignore="UseSwitchCompatOrMaterialXml" />
 
 

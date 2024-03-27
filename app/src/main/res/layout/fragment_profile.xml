@@ -21,25 +21,24 @@
             android:src="@drawable/male_icon"/>
 
         <TextView
+            android:id="@+id/nameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:text="Kaedehara Kazuha"
             android:textColor="#FFFFFF"
             android:textSize="22dp"
             android:textStyle="bold"/>
-        
+
         <TextView
+            android:id="@+id/phoneTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textColor="#817E89"
-            android:text="09987654321"
             android:textSize="12sp"/>
 
         <LinearLayout
-            android:id="@+id/edit_profile_button"
             android:background="@drawable/round_back_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,12 +47,13 @@
             android:layout_marginTop="40dp"
             android:orientation="vertical"
             android:padding="15dp"
-            android:clickable="true"
-            android:onClick="EditProfile">
+            android:clickable="true">
 
             <RelativeLayout
+                android:id="@+id/edit_profile_button"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:onClick="EditProfile">
 
                 <ImageView
                     android:id="@+id/edit_profile_icon"
@@ -72,6 +72,78 @@
                     android:textColor="#FFFFFF"
                     android:textStyle="bold"
                     android:layout_toEndOf="@id/edit_profile_icon"
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/right_arrow_icon"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"/>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/change_email"
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="ChangeEmail">
+
+                <ImageView
+                    android:id="@+id/change_email_icon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/baseline_email_24"
+                    android:background="@drawable/round_back_edit"
+                    android:padding="12dp"/>
+
+                <TextView
+                    android:layout_marginStart="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="Change your email"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:layout_toEndOf="@id/change_email_icon"
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/right_arrow_icon"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"/>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/change_password"
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="ChangePassword">
+
+                <ImageView
+                    android:id="@+id/change_password_icon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/baseline_key_24"
+                    android:background="@drawable/round_back_edit"
+                    android:padding="12dp"/>
+
+                <TextView
+                    android:layout_marginStart="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="Change your password"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:layout_toEndOf="@id/change_password_icon"
                     />
 
                 <ImageView

@@ -27,6 +27,10 @@ class MainScreen : AppCompatActivity() {
     private lateinit var dialog: Dialog
     private lateinit var btndialogCancel: Button
     private lateinit var btnDialogLogout: Button
+    private lateinit var verifydialog: Dialog
+    private lateinit var btnVerifySubmit: Button
+    private lateinit var btnVerifyCancel: Button
+
     private var doubleBackToExitPressedOnce: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +63,24 @@ class MainScreen : AppCompatActivity() {
             startActivity(intent)
             Toast.makeText(this, "Logout Successful!", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
+        }
+
+        verifydialog = Dialog(this)
+        verifydialog.setContentView(R.layout.verify_dialog_box)
+        verifydialog.window?.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        verifydialog.window?.setBackgroundDrawable(getDrawable(R.drawable.logout_dialog_bg))
+        verifydialog.setCancelable(false)
+
+        btnVerifyCancel = verifydialog.findViewById(R.id.cancel_verify_button)
+        btnVerifySubmit = verifydialog.findViewById(R.id.submit_button)
+
+        btnVerifyCancel.setOnClickListener {
+            verifydialog.dismiss()
+        }
+
+        btnVerifySubmit.setOnClickListener {
+            // TODO: CREATE INTERFACE FOR CHANGE PASSWORD AND EMAIL
+            verifydialog.dismiss()
         }
 
         val homelayout = findViewById<LinearLayout>(R.id.home_layout)
@@ -238,4 +260,13 @@ class MainScreen : AppCompatActivity() {
     fun Logout(view: View?) {
         dialog.show()
     }
+
+    fun ChangeEmail(view: View?) {
+        verifydialog.show()
+    }
+
+    fun ChangePassword(view: View?) {
+        verifydialog.show()
+    }
+
 }
