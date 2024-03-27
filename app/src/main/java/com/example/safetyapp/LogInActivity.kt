@@ -14,27 +14,37 @@ class LogInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLogInBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
 
         binding.SignUpBtn.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
         }
+        binding.forgotBtn.setOnClickListener{
+            startActivity(Intent(this, ForgotPassword1::class.java))
+
+        }
         auth = FirebaseAuth.getInstance()
 
-        binding.loginBtn.setOnClickListener(){
-            val email = binding.Email.text.toString()
-            val password = binding.Password.text.toString()
-            if (email.isNotEmpty() && password.isNotEmpty()){
-                auth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            startActivity(Intent(this, MainActivity::class.java))
-                        } else {
-                            Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show()
+        if(auth.currentUser == null){
+            setContentView(binding.root)
+            binding.loginBtn.setOnClickListener(){
+                val email = binding.Email.text.toString()
+                val password = binding.Password.text.toString()
+                if (email.isNotEmpty() && password.isNotEmpty()){
+                    auth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                startActivity(Intent(this, MainScreen::class.java))
+                            } else {
+                                Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show()
+                            }
                         }
-                    }
-            }else{
-                Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show()
+                }
             }
+        }else{
+            startActivity(Intent(this, MainScreen::class.java))
         }
     }
 }

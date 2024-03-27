@@ -25,8 +25,9 @@ class SignUpActivity : AppCompatActivity() {
             val email = binding.emailEdittext.text.toString()
             val password = binding.passwordEdittext.text.toString()
             val confirmPassword = binding.confirmPasswordEdittext.text.toString()
+            supportActionBar?.hide()
 
-            if (email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+            if (email.isNotEmpty() && password.isNotEmpty() && confirmPassword.isNotEmpty()) {
                 if (password == confirmPassword){
                     firebaseAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener { task ->

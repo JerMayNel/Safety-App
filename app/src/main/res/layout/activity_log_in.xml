@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".LogIn">
+    tools:context=".LogInActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -52,7 +52,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:hint=" Enter email or phone number"
+            android:hint="Enter email or phone number"
+            android:drawablePadding="10dp"
             android:textColorHint="@color/gray"
             android:textColor="@color/white"
             android:inputType="text"
@@ -60,19 +61,26 @@
             android:padding="18dp"
             android:drawableLeft="@drawable/baseline_email_24" />
 
-        <EditText
-            android:id="@+id/Password"
-            android:layout_marginHorizontal="10dp"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:hint=" Password"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/white"
             android:textColorHint="@color/gray"
-            android:textColor="@color/white"
             android:inputType="textPassword"
-            android:background="@drawable/rounded_corner"
-            android:padding="18dp"
-            android:drawableLeft="@drawable/baseline_lock_24" />
+            android:padding="10dp"
+            app:startIconDrawable="@drawable/baseline_lock_24"
+            app:startIconTint="@color/white">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/Password"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Password"
+                android:textColor="@color/white"
+                android:background="@drawable/rounded_corner"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/login_btn"

@@ -47,9 +47,13 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.firebase.auth)
+    implementation(libs.firebase.database.ktx)
+    implementation(libs.firebase.firestore.ktx)
+    implementation(libs.play.services.location)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.23")
     implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
+    implementation ("com.google.android.gms:play-services-maps:18.2.0")
 }

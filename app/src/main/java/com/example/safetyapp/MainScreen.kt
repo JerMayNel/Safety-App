@@ -1,5 +1,6 @@
 package com.example.safetyapp
 
+
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
@@ -16,6 +17,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 
 class MainScreen : AppCompatActivity() {
 
@@ -23,10 +27,12 @@ class MainScreen : AppCompatActivity() {
     private lateinit var dialog: Dialog
     private lateinit var btndialogCancel: Button
     private lateinit var btnDialogLogout: Button
+    private var doubleBackToExitPressedOnce: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main_screen)
+        supportActionBar?.hide()
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -47,7 +53,7 @@ class MainScreen : AppCompatActivity() {
         }
 
         btnDialogLogout.setOnClickListener {
-            val intent = Intent(this, LogIn::class.java)
+            val intent = Intent(this, LogInActivity::class.java)
             startActivity(intent)
             Toast.makeText(this, "Logout Successful!", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
@@ -211,12 +217,31 @@ class MainScreen : AppCompatActivity() {
         }
 
     }
+
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed()
+            return
+        }
+        this.doubleBackToExitPressedOnce = true
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show()
+    }
+
     fun EditProfile(view: View?) {
         val intent = Intent(this, EditMyProfile::class.java)
         startActivity(intent)
     }
 
     fun Logout(view: View?) {
-        dialog.show()
+        val auth = FirebaseAuth.getInstance()
+
+        auth.signOut()
+
+        val intent = Intent(this, LogInActivity::class.java)
+        startActivity(intent)
+        finish()
+        Toast.makeText(this, "Logout Successfully", Toast.LENGTH_SHORT).show()
+        dialog.dismiss()
     }
 }
