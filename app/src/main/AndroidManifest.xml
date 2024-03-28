@@ -16,6 +16,9 @@
         android:theme="@style/Theme.SafetyApp"
         tools:targetApi="31">
         <activity
+            android:name=".AboutUs"
+            android:exported="false" />
+        <activity
             android:name=".ChangePassword"
             android:exported="false" />
         <activity
@@ -57,10 +60,10 @@
         <activity
             android:name=".LogInActivity"
             android:exported="true"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity android:name=".database.add.AddContacts"
-            android:exported="true"/>
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".database.add.AddContacts"
+            android:exported="true" />
         <activity
             android:name=".SplashScreenActivity"
             android:exported="true"

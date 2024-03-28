@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".AboutUs">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="30dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/back_button"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:layout_gravity="start"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/baseline_arrow_back_ios_24" />\
+
+            <TextView
+                android:id="@+id/aboutustext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif"
+                android:text="About Us"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:src="@drawable/button"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="Safety App"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="Version X.X"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#B3FFFFFF"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"/>
+
+
+        <LinearLayout
+            android:background="@drawable/round_back_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="30dp"
+            android:orientation="vertical"
+            android:padding="15dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Development Team"
+                android:textSize="20sp"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:layout_toEndOf="@id/info_icon"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:id="@+id/info_icon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/baseline_person_24"
+                    android:background="@drawable/round_back_edit"
+                    android:padding="12dp"/>
+
+                <TextView
+                    android:layout_marginStart="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical='true'
+                    android:text="Janel Antolin"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:layout_toEndOf="@id/info_icon"/>
+
+                <TextView
+                    android:id="@+id/role"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="10dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Lead Developer"
+                    android:textColor="#99FFFFFF"
+                    android:textSize="10sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:id="@+id/info_icon2"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/baseline_person_24"
+                    android:background="@drawable/round_back_about_us"
+                    android:padding="12dp"/>
+
+                <TextView
+                    android:layout_marginStart="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical='true'
+                    android:text="Jeramelle Dela Cruz"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:layout_toEndOf="@id/info_icon2"/>
+
+                <TextView
+                    android:id="@+id/role2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="10dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Lead Developer"
+                    android:textColor="#99FFFFFF"
+                    android:textSize="10sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:id="@+id/info_icon3"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/baseline_person_24"
+                    android:background="@drawable/round_back_logout"
+                    android:padding="12dp"/>
+
+                <TextView
+                    android:layout_marginStart="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical='true'
+                    android:text="Mi-ro Dela Cruz"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:layout_toEndOf="@id/info_icon3"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:id="@+id/info_icon4"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/baseline_person_24"
+                    android:background="@drawable/round_back_edit"
+                    android:padding="12dp"/>
+
+                <TextView
+                    android:layout_marginStart="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical='true'
+                    android:text="Revin Jay Delgado"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:layout_toEndOf="@id/info_icon4"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:id="@+id/info_icon5"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/baseline_person_24"
+                    android:background="@drawable/round_back_about_us"
+                    android:padding="12dp"/>
+
+                <TextView
+                    android:layout_marginStart="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical='true'
+                    android:text="Angela Olaera"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:layout_toEndOf="@id/info_icon5"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:id="@+id/info_icon6"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/baseline_person_24"
+                    android:background="@drawable/round_back_logout"
+                    android:padding="12dp"/>
+
+                <TextView
+                    android:layout_marginStart="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical='true'
+                    android:text="Jomari Sedanto"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:layout_toEndOf="@id/info_icon6"
+                    />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
