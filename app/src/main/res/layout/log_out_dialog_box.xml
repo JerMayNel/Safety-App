@@ -7,7 +7,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/backgroundcolor">
 
         <TextView
             android:id="@+id/confirm_text"
@@ -55,10 +56,10 @@
                 android:layout_height="match_parent"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
-                android:padding="12dp"
+                android:padding="15dp"
                 android:text="Cancel"
                 android:textColor="@color/cyan"
-                android:textSize="12sp"
+                android:textSize="15sp"
                 app:backgroundTint="@android:color/transparent"
                 app:strokeColor="@color/cyan"
                 app:strokeWidth="2dp" />
@@ -69,10 +70,10 @@
                 android:layout_height="match_parent"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
-                android:padding="12dp"
+                android:padding="15dp"
                 android:text="Log Out"
                 android:textColor="@color/backgroundcolor"
-                android:textSize="12sp"
+                android:textSize="15sp"
                 app:backgroundTint="@color/cyan" />
 
 

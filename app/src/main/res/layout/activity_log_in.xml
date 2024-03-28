@@ -32,6 +32,7 @@
             android:layout_marginTop="16dp"
             android:fontFamily="sans-serif"
             android:text="Login"
+            android:textColor="@color/white"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -62,11 +63,13 @@
             android:drawableLeft="@drawable/baseline_email_24" />
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/passwordlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:passwordToggleEnabled="true"
             app:passwordToggleTint="@color/white"
             android:textColorHint="@color/gray"
+            app:hintTextColor="@android:color/transparent"
             android:inputType="textPassword"
             android:padding="10dp"
             app:startIconDrawable="@drawable/baseline_lock_24"

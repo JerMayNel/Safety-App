@@ -61,20 +61,6 @@
             android:padding="18dp"
             android:drawableLeft="@drawable/baseline_call_24" />
 
-        <EditText
-            android:id="@+id/email"
-            android:layout_marginHorizontal="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:hint=" Your Email"
-            android:textColorHint="@color/gray"
-            android:textColor="@color/white"
-            android:inputType="textEmailAddress"
-            android:background="@drawable/rounded_corner"
-            android:padding="18dp"
-            android:drawableLeft="@drawable/baseline_call_24" />
-
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

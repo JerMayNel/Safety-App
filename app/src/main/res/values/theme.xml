@@ -1,6 +1,6 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="Base.Theme.SafetyApp" parent="Theme.Material3.DynamicColors.Light">
+    <style name="Base.Theme.SafetyApp" parent="Theme.Material3.Dark.NoActionBar">
         <!-- Customize your light theme here. -->
         <item name="colorPrimaryVariant">@color/cyan</item>
         <item name="colorOnPrimary">@color/white</item>
@@ -13,5 +13,12 @@
 
     <style name="Theme.SafetyApp" parent="Base.Theme.SafetyApp">
         <!-- Add any additional customizations specific to this theme here. -->
+    </style>
+
+    <style name='Switch' parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">@color/cyan</item>
+        <item name="colorSwitchThumbNormal">#FFFFFF</item>
+        <item name="android:colorForeground">#99FFFFFF</item>
+
     </style>
 </resources>
