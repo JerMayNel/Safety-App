@@ -54,6 +54,5 @@ class ForgotPassword1 : AppCompatActivity() {
                         ).show()
                     }
                 }
-        }
-    }
+        }    }
 }
