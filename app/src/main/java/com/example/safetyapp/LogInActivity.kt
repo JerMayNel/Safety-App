@@ -8,28 +8,28 @@ import com.example.safetyapp.databinding.ActivityLogInBinding
 import com.google.firebase.auth.FirebaseAuth
 
 class LogInActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityLogInBinding
+    private lateinit var binding2 : ActivityLogInBinding
     private lateinit var auth : FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLogInBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        binding2 = ActivityLogInBinding.inflate(layoutInflater)
+        setContentView(binding2.root)
         supportActionBar?.hide()
 
-        binding.SignUpBtn.setOnClickListener {
+        binding2.SignUpBtn.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
         }
-        binding.forgotBtn.setOnClickListener{
+        binding2.forgotBtn.setOnClickListener{
             startActivity(Intent(this, ForgotPassword1::class.java))
 
         }
         auth = FirebaseAuth.getInstance()
 
         if(auth.currentUser == null){
-            setContentView(binding.root)
-            binding.loginBtn.setOnClickListener(){
-                val email = binding.Email.text.toString()
-                val password = binding.Password.text.toString()
+            setContentView(binding2.root)
+            binding2.loginBtn.setOnClickListener(){
+                val email = binding2.Email.text.toString()
+                val password = binding2.Password.text.toString()
                 if (email.isNotEmpty() && password.isNotEmpty()){
                     auth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener { task ->

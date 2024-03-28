@@ -1,84 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/backgroundcolor"
-    tools:context=".ContactsFragment">
+    tools:context=".database.list.ContactsFragment">
 
-    <LinearLayout
-        android:id="@+id/contentLayout"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/contactsRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="30dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/ContactsText"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="sans-serif"
-            android:text="Trusted contacts"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textSize="30sp"
-            android:textStyle="bold" />
-
-        <!-- ScrollView for contacts_recycler_row -->
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <include layout="@layout/contacts_recycler_row"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp" />
-                <include layout="@layout/contacts_recycler_row"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp" />
-                <include layout="@layout/contacts_recycler_row"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp" />
-                <include layout="@layout/contacts_recycler_row"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp" />
-                <include layout="@layout/contacts_recycler_row"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp" />
-                <include layout="@layout/contacts_recycler_row"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp" />
-
-                <include
-                    layout="@layout/contacts_recycler_row"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp" />
-
-                <include layout="@layout/contacts_recycler_row"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp" />
-
-            </LinearLayout>
-        </ScrollView>
-
-    </LinearLayout>
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/AddContactsButton"
@@ -86,12 +23,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="50dp"
         android:backgroundTint="@color/cyan"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="24dp"
         android:clickable="true"
         android:elevation="10dp"
         android:src="@drawable/baseline_add_24"
-        app:tint="@color/backgroundcolor"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/backgroundcolor" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

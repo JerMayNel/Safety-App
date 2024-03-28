@@ -1,6 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/backgroundcolor"
+    tools:context=".database.add.AddContacts">
+
+    <EditText
+        android:id="@+id/adding_contacts_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:textColor="@color/white"
+        android:hint="Name Of the Guardian"
+        android:textColorHint="@color/gray"
+        android:padding="20dp"
+        android:background="@drawable/rounded_corner"
+        app:layout_constraintTop_toTopOf="parent" />
+    <EditText
+        android:id="@+id/adding_contacts_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:textColor="@color/white"
+        android:hint="Phone Number"
+        android:textColorHint="@color/gray"
+        android:padding="20dp"
+        android:background="@drawable/rounded_corner"
+        app:layout_constraintTop_toBottomOf="@id/adding_contacts_name" />
+    <EditText
+        android:id="@+id/adding_contacts_relation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="40dp"
+        android:textColor="@color/white"
+        android:layout_marginRight="40dp"
+        android:hint="Relation"
+        android:textColorHint="@color/gray"
+        android:padding="20dp"
+        android:background="@drawable/rounded_corner"
+        app:layout_constraintTop_toBottomOf="@id/adding_contacts_phone" />
+
+    <Button
+        android:id="@+id/adding_contacts_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/cyan"
+        android:text="Submit"
+        app:layout_constraintTop_toBottomOf="@+id/adding_contacts_relation"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="50dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
