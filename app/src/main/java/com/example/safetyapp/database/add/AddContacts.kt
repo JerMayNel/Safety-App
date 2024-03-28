@@ -2,9 +2,11 @@ package com.example.safetyapp.database.add
 
 import android.os.Bundle
 import android.text.TextUtils
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.example.safetyapp.R
 import com.example.safetyapp.data.Contacts
 import com.example.safetyapp.data.ContactsViewModel
 import com.example.safetyapp.databinding.AddingContactsBinding
@@ -23,6 +25,8 @@ class AddContacts : AppCompatActivity(){
         binding.addingContactsSubmit.setOnClickListener{
             insertDataToDatabase()
         }
+
+        setBackButtonClickListener()
     }
 
     private fun insertDataToDatabase() {
@@ -43,4 +47,12 @@ class AddContacts : AppCompatActivity(){
     private fun inputCheck(name: String, number: String, relation: String): Boolean {
         return !(TextUtils.isEmpty(name) && TextUtils.isEmpty(number) && TextUtils.isEmpty(relation))
     }
+
+    private fun setBackButtonClickListener() {
+        val BackButton = findViewById<ImageButton>(R.id.back_button)
+        BackButton.setOnClickListener {
+            onBackPressed()
+        }
+    }
+
 }
