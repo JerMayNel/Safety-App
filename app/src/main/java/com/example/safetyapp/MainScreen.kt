@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.ScaleAnimation
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -18,6 +19,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.safetyapp.database.list.ContactsFragment
+import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 
 class MainScreen : AppCompatActivity() {
@@ -62,24 +65,6 @@ class MainScreen : AppCompatActivity() {
             startActivity(intent)
             Toast.makeText(this, "Logout Successful!", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
-        }
-
-        verifydialog = Dialog(this)
-        verifydialog.setContentView(R.layout.verify_dialog_box)
-        verifydialog.window?.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        verifydialog.window?.setBackgroundDrawable(getDrawable(R.drawable.logout_dialog_bg))
-        verifydialog.setCancelable(false)
-
-        btnVerifyCancel = verifydialog.findViewById(R.id.cancel_verify_button)
-        btnVerifySubmit = verifydialog.findViewById(R.id.submit_button)
-
-        btnVerifyCancel.setOnClickListener {
-            verifydialog.dismiss()
-        }
-
-        btnVerifySubmit.setOnClickListener {
-            // TODO: CREATE INTERFACE FOR CHANGE PASSWORD AND EMAIL
-            verifydialog.dismiss()
         }
 
         val homelayout = findViewById<LinearLayout>(R.id.home_layout)
@@ -261,11 +246,77 @@ class MainScreen : AppCompatActivity() {
     }
 
     fun ChangeEmail(view: View?) {
-        verifydialog.show()
+        showVerificationDialog { // Show the verification dialog
+            // Proceed with changing the email
+            val intent = Intent(this, ChangeEmail::class.java)
+            startActivity(intent)
+        }
     }
 
     fun ChangePassword(view: View?) {
-        verifydialog.show()
+        showVerificationDialog { // Show the verification dialog
+            // Proceed with changing the password
+            val intent = Intent(this, ChangePassword::class.java)
+            startActivity(intent)
+        }
+    }
+
+    fun AddContact(view: View?) {
+        val intent = Intent(this, AddContact::class.java)
+        startActivity(intent)
+    }
+
+    private fun showVerificationDialog(onSubmit: () -> Unit) {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.verify_dialog_box)
+        dialog.window?.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialog.window?.setBackgroundDrawable(getDrawable(R.drawable.logout_dialog_bg))
+        dialog.setCancelable(false)
+
+        val passwordLayout = dialog.findViewById<TextInputLayout>(R.id.passwordlayout)
+        val passwordEditText = dialog.findViewById<EditText>(R.id.verifypassword)
+        val submitButton = dialog.findViewById<Button>(R.id.submit_button)
+        val cancelButton = dialog.findViewById<Button>(R.id.cancel_verify_button)
+
+        passwordLayout.endIconMode = TextInputLayout.END_ICON_NONE
+
+        passwordEditText.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                passwordLayout.endIconMode = TextInputLayout.END_ICON_PASSWORD_TOGGLE
+            } else {
+                passwordLayout.endIconMode = TextInputLayout.END_ICON_NONE
+            }
+        }
+
+        cancelButton.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        submitButton.setOnClickListener {
+            val enteredPassword = passwordEditText.text.toString()
+
+            if (enteredPassword.isNotEmpty()) {
+                // Get the currently signed-in user
+                val user = FirebaseAuth.getInstance().currentUser
+
+                // Create credentials with the user's email and entered password
+                val credentials = EmailAuthProvider.getCredential(user?.email ?: "", enteredPassword)
+
+                // Re-authenticate the user with the provided credentials
+                user?.reauthenticate(credentials)
+                    ?.addOnCompleteListener { reauthTask ->
+                        if (reauthTask.isSuccessful) {
+                            onSubmit.invoke() // Proceed with the action after successful re-authentication
+                            dialog.dismiss()
+                        } else {
+                            Toast.makeText(this, "Failed to re-authenticate. Incorrect password.", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+            } else {
+                Toast.makeText(this, "Please enter your password.", Toast.LENGTH_SHORT).show()
+            }
+        }
+        dialog.show()
     }
 
 }
