@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.safetyapp.databinding.ActivityLogInBinding
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 
 class LogInActivity : AppCompatActivity() {
@@ -15,6 +17,10 @@ class LogInActivity : AppCompatActivity() {
         binding2 = ActivityLogInBinding.inflate(layoutInflater)
         setContentView(binding2.root)
         supportActionBar?.hide()
+
+        // Toggle visibility
+        val textInputLayout = findViewById<TextInputLayout>(R.id.passwordlayout)
+        val passwordEditText = findViewById<TextInputEditText>(R.id.Password)
 
         binding2.SignUpBtn.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
@@ -45,6 +51,16 @@ class LogInActivity : AppCompatActivity() {
             }
         }else{
             startActivity(Intent(this, MainScreen::class.java))
+        }
+        // Set up the password toggle icon visibility
+        textInputLayout.endIconMode = TextInputLayout.END_ICON_NONE
+
+        passwordEditText.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                textInputLayout.endIconMode = TextInputLayout.END_ICON_PASSWORD_TOGGLE
+            } else {
+                textInputLayout.endIconMode = TextInputLayout.END_ICON_NONE
+            }
         }
     }
 }
