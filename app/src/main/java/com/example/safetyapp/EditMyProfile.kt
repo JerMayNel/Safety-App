@@ -7,13 +7,15 @@ import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 
 class EditMyProfile : AppCompatActivity() {
 
     private lateinit var nameEditText: EditText
     private lateinit var phoneEditText: EditText
-    private lateinit var firestore: FirebaseFirestore
+    private lateinit var databaseReference: DatabaseReference
     private lateinit var userId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,8 +27,9 @@ class EditMyProfile : AppCompatActivity() {
         nameEditText = findViewById(R.id.name)
         phoneEditText = findViewById(R.id.contactnumber)
 
-        // Initialize Firestore
-        firestore = FirebaseFirestore.getInstance()
+        // Initialize Realtime Database
+        val firebaseDatabase = FirebaseDatabase.getInstance()
+        databaseReference = firebaseDatabase.reference
         userId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
 
         // Fetch and display current user data
@@ -38,20 +41,18 @@ class EditMyProfile : AppCompatActivity() {
     }
 
     private fun fetchAndDisplayUserData() {
-        val userDocumentRef = firestore.collection("users").document(userId)
-
-        userDocumentRef.get()
-            .addOnSuccessListener { documentSnapshot ->
-                if (documentSnapshot.exists()) {
-                    val name = documentSnapshot.getString("name")
-                    val phone = documentSnapshot.getString("phone")
+        databaseReference.child("users").child(userId)
+            .get()
+            .addOnSuccessListener { dataSnapshot ->
+                if (dataSnapshot.exists()) {
+                    val name = dataSnapshot.child("name").value.toString()
+                    val phone = dataSnapshot.child("phone").value.toString()
 
                     // Set retrieved data to EditTexts
                     nameEditText.setText(name)
                     phoneEditText.setText(phone)
                 } else {
-                    // Document doesn't exist
-                    // Handle the case when user document doesn't exist
+                    // Handle the case when user data doesn't exist
                 }
             }
             .addOnFailureListener { e ->
@@ -75,21 +76,19 @@ class EditMyProfile : AppCompatActivity() {
             val newName = nameEditText.text.toString().trim()
             val newPhone = phoneEditText.text.toString().trim()
 
-            // Update Firestore with new data
+            // Update Realtime Database with new data
             updateUserData(newName, newPhone)
             finish()
         }
     }
 
     private fun updateUserData(name: String, phone: String) {
-        val userDocumentRef = firestore.collection("users").document(userId)
-
         val userData = hashMapOf(
             "name" to name,
             "phone" to phone
         )
 
-        userDocumentRef.set(userData)
+        databaseReference.child("users").child(userId).updateChildren(userData as Map<String, Any>)
             .addOnSuccessListener {
                 // Handle success
                 // Display a success message or perform any necessary action

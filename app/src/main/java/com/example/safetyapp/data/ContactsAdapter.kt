@@ -3,20 +3,40 @@ package com.example.safetyapp.data
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.safetyapp.R
 
-class ContactsAdapter : RecyclerView.Adapter<ContactsAdapter.ContactsViewHolder>(){
+class ContactsAdapter(private val listener: OnItemClickListener) : RecyclerView.Adapter<ContactsAdapter.ContactsViewHolder>() {
 
     private var contactList = emptyList<Contacts>()
 
-    class ContactsViewHolder(itemsView: View) : RecyclerView.ViewHolder(itemsView){
+    interface OnItemClickListener {
+        fun onDeleteClick(contact: Contacts)
+    }
 
+    inner class ContactsViewHolder(itemsView: View) : RecyclerView.ViewHolder(itemsView) {
+        val nameText: TextView = itemsView.findViewById(R.id.name)
+        val numberText: TextView = itemsView.findViewById(R.id.phone)
+        val relationText: TextView = itemsView.findViewById(R.id.relation)
+        val deleteButton: ImageButton = itemsView.findViewById(R.id.delete_button)
+
+        init {
+            // Set click listener for the delete button
+            deleteButton.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val contact = contactList[position]
+                    listener.onDeleteClick(contact)
+                }
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactsViewHolder {
-        return ContactsViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.custom_row, parent, false))
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.custom_row, parent, false)
+        return ContactsViewHolder(itemView)
     }
 
     override fun getItemCount(): Int {
@@ -25,17 +45,12 @@ class ContactsAdapter : RecyclerView.Adapter<ContactsAdapter.ContactsViewHolder>
 
     override fun onBindViewHolder(holder: ContactsViewHolder, position: Int) {
         val currentItem = contactList[position]
-        val idText = holder.itemView.findViewById<TextView>(R.id.id_txt)
-        val nameText = holder.itemView.findViewById<TextView>(R.id.name)
-        val numberText = holder.itemView.findViewById<TextView>(R.id.phone)
-        val relationText = holder.itemView.findViewById<TextView>(R.id.relation)
-
-        idText.text = currentItem.id.toString()
-        nameText.text = currentItem.name
-        numberText.text = currentItem.number
-        relationText.text = currentItem.relation
+        holder.nameText.text = currentItem.name
+        holder.numberText.text = currentItem.number
+        holder.relationText.text = currentItem.relation
     }
-    fun setData(contacts: List<Contacts>){
+
+    fun setData(contacts: List<Contacts>) {
         this.contactList = contacts
         notifyDataSetChanged()
     }

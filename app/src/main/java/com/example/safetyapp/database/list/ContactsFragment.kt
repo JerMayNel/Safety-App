@@ -8,13 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import com.example.safetyapp.data.ContactsAdapter
 import com.example.safetyapp.R
+import com.example.safetyapp.data.Contacts
 import com.example.safetyapp.data.ContactsViewModel
 import com.example.safetyapp.database.add.AddContacts
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class ContactsFragment : Fragment() {
+class ContactsFragment : Fragment(), ContactsAdapter.OnItemClickListener {
 
     private lateinit var mcontactsViewModel: ContactsViewModel
     override fun onCreateView(
@@ -25,7 +27,7 @@ class ContactsFragment : Fragment() {
         val interview = inflater.inflate(R.layout.fragment_contacts, container, false)
         val fab = interview.findViewById<FloatingActionButton>(R.id.AddContactsButton)
 
-        val adapter = ContactsAdapter()
+        val adapter = ContactsAdapter(this) // Pass listener to the adapter
         val recyclerView = interview.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.contactsRecyclerView)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(requireContext())
@@ -41,6 +43,11 @@ class ContactsFragment : Fragment() {
         }
         // Inflate the layout for this fragment
         return interview
+    }
+
+    override fun onDeleteClick(contact: Contacts) {
+        // Call the deleteContact function from the ViewModel to delete the contact
+        mcontactsViewModel.deleteContact(contact)
     }
 
 }

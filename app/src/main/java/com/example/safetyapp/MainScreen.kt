@@ -18,6 +18,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.safetyapp.database.add.AddContacts
 import com.example.safetyapp.database.list.ContactsFragment
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.EmailAuthProvider
@@ -29,6 +30,9 @@ class MainScreen : AppCompatActivity() {
     private lateinit var dialog: Dialog
     private lateinit var btndialogCancel: Button
     private lateinit var btnDialogLogout: Button
+    private lateinit var verifydialog: Dialog
+    private lateinit var btnVerifySubmit: Button
+    private lateinit var btnVerifyCancel: Button
 
     private var doubleBackToExitPressedOnce: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -257,9 +261,10 @@ class MainScreen : AppCompatActivity() {
             startActivity(intent)
         }
     }
-    fun AboutUs(view: View?) {
-            val intent = Intent(this, AboutUs::class.java)
-            startActivity(intent)
+
+    fun AddContact(view: View?) {
+        val intent = Intent(this, AddContacts::class.java)
+        startActivity(intent)
     }
 
     private fun showVerificationDialog(onSubmit: () -> Unit) {

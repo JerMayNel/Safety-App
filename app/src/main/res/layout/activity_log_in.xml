@@ -25,13 +25,13 @@
 
         <TextView
             android:id="@+id/LoginText"
-            android:layout_width="80dp"
-            android:layout_height="43dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:fontFamily="sans-serif"
-            android:text="Login"
+            android:text="Log In"
             android:textColor="@color/white"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="30sp"

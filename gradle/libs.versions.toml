@@ -15,6 +15,7 @@ firebaseDatabaseKtx = "20.3.1"
 firebaseFirestoreKtx = "24.11.0"
 playServicesLocation = "21.2.0"
 roomCommon = "2.6.1"
+lifecycleViewmodelCompose = "2.7.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -31,6 +32,7 @@ firebase-database-ktx = { group = "com.google.firebase", name = "firebase-databa
 firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "firebaseFirestoreKtx" }
 play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
 androidx-room-common = { group = "androidx.room", name = "room-common", version.ref = "roomCommon" }
+androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

@@ -1,18 +1,23 @@
 package com.example.safetyapp
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class ProfileFragment : Fragment() {
     private lateinit var nameTextView: TextView
     private lateinit var phoneTextView: TextView
-    private lateinit var firestore: FirebaseFirestore
+    private lateinit var database: DatabaseReference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,7 +28,7 @@ class ProfileFragment : Fragment() {
         nameTextView = view.findViewById(R.id.nameTextView)
         phoneTextView = view.findViewById(R.id.phoneTextView)
 
-        firestore = FirebaseFirestore.getInstance()
+        database = FirebaseDatabase.getInstance().getReference("users")
 
         fetchAndDisplayUserData()
 
@@ -34,24 +39,31 @@ class ProfileFragment : Fragment() {
         val userId = FirebaseAuth.getInstance().currentUser?.uid
 
         if (userId != null) {
-            val userDocumentRef = firestore.collection("users").document(userId)
+            val userRef = database.child(userId)
 
-            userDocumentRef.get()
-                .addOnSuccessListener { documentSnapshot ->
-                    if (documentSnapshot.exists()) {
-                        val name = documentSnapshot.getString("name")
-                        val phone = documentSnapshot.getString("phone")
+            userRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        val name = dataSnapshot.child("name").value.toString()
+                        val phone = dataSnapshot.child("phone").value.toString()
 
                         // Set name and phone to TextViews
                         nameTextView.text = name
                         phoneTextView.text = phone
+
+                        // Log user's name and phone number
+                        Log.d("ProfileFragment", "Name: $name, Phone: $phone")
                     } else {
-                        // Document doesn't exist
+                        // Data for user doesn't exist
+                        Log.d("ProfileFragment", "User data doesn't exist")
                     }
                 }
-                .addOnFailureListener { e ->
-                    // Handle failures
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    // Handle database errors
+                    Log.e("ProfileFragment", "Error fetching user data: ${databaseError.message}")
                 }
+            })
         }
     }
 }

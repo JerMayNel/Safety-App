@@ -57,6 +57,7 @@ dependencies {
     implementation(libs.firebase.firestore.ktx)
     implementation(libs.play.services.location)
     implementation(libs.androidx.room.common)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -89,4 +90,7 @@ dependencies {
 
     implementation ("androidx.room:room-ktx:$room_version")
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:$room_version")
+
+    implementation ("com.firebaseui:firebase-ui-auth:8.0.0")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
 }
