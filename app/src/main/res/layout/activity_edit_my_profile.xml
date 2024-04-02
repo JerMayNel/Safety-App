@@ -47,7 +47,9 @@
             android:layout_height="100dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:src="@drawable/male_icon"/>
+            android:src="@drawable/cat"
+            android:background="@drawable/circular_bg"
+            android:clipToOutline="true"/>
 
         <EditText
             android:id="@+id/name"

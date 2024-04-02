@@ -44,18 +44,6 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".AskLocation"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".AddTrustedContacts"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ForgotPassword2"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ForgotPassword1"
             android:exported="false"
             android:screenOrientation="portrait" />
