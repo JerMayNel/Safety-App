@@ -20,6 +20,10 @@ class SignUpActivity : AppCompatActivity() {
 
         firebaseAuth = FirebaseAuth.getInstance()
 
+        binding.signInBtn.setOnClickListener {
+            startActivity(Intent(this, SignUpActivity::class.java))
+        }
+
         binding.createAccountBtn.setOnClickListener {
             val name = binding.fullNameEdittext.text.toString()
             val email = binding.emailEdittext.text.toString()

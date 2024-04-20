@@ -263,6 +263,11 @@ class MainScreen : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun AboutUs(view: View?) {
+        val intent = Intent(this, AboutUs::class.java)
+        startActivity(intent)
+    }
+
     private fun showVerificationDialog(onSubmit: () -> Unit) {
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.verify_dialog_box)
