@@ -28,11 +28,5 @@ class ContactsViewModel(application: Application) : AndroidViewModel(application
             repository.updateContactsIdsAfterDeletion(contact.id)
         }
     }
-    suspend fun getEmergencyContacts(): List<Contacts> {
-        return repository.getEmergencyContacts()
-    }
-    suspend fun getContactByNumber(number: String): Contacts {
-        return repository.getContactsByNumber(number)
-    }
 
 }

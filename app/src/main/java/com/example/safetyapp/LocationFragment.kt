@@ -3,24 +3,21 @@ package com.example.safetyapp
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
-import androidx.core.app.ActivityCompat
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CompoundButton
+import androidx.core.app.ActivityCompat
+import androidx.fragment.app.Fragment
 import com.example.safetyapp.databinding.FragmentLocationBinding
-import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 
 class LocationFragment : Fragment(), OnMapReadyCallback {
     private lateinit var googleMap: GoogleMap
     private lateinit var binding: FragmentLocationBinding
     private lateinit var mapView: MapView
+    private var isTrackingEnabled = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +34,12 @@ class LocationFragment : Fragment(), OnMapReadyCallback {
         mapView.onResume()
         mapView.getMapAsync(this)
 
-        binding.switch1.setOnCheckedChangeListener { buttonView, isChecked ->
+        // Check location permission status and set the switch accordingly
+        updateLocationSwitch()
+
+
+        binding.switch1.setOnCheckedChangeListener { _, isChecked ->
+            isTrackingEnabled = isChecked
             if (isChecked) {
                 enableLocationTracking()
             } else {
@@ -71,30 +73,69 @@ class LocationFragment : Fragment(), OnMapReadyCallback {
                 LOCATION_PERMISSION_REQUEST_CODE
             )
             return
+        } else {
+            // Permission granted
+            googleMap.isMyLocationEnabled = true
         }
-
-        // Enable location tracking
-        googleMap.isMyLocationEnabled = true
     }
 
     private fun disableLocationTracking() {
-
+        googleMap.isMyLocationEnabled = false
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED &&
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // Request permissions if not granted
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ),
+                LOCATION_PERMISSION_REQUEST_CODE
+            )
+            return
+        } else {
+            // Permission granted
+            googleMap.isMyLocationEnabled = false
+        }
+
+    }
+
+    private fun updateLocationSwitch() {
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED &&
             ActivityCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.ACCESS_COARSE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED
+            ) != PackageManager.PERMISSION_GRANTED
         ) {
-            googleMap.isMyLocationEnabled = false
+            binding.switch1.isChecked = false
+        } else {
+            binding.switch1.isChecked = true
         }
+    }
+    override fun onResume(){
+        super.onResume()
+        mapView.onResume()
+        if (isTrackingEnabled) {
+            enableLocationTracking()
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        mapView.onDestroy()
     }
 
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 123
     }
 }
-
 

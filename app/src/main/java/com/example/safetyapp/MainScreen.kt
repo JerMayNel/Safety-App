@@ -1,6 +1,5 @@
 package com.example.safetyapp
 
-
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
@@ -30,9 +29,6 @@ class MainScreen : AppCompatActivity() {
     private lateinit var dialog: Dialog
     private lateinit var btndialogCancel: Button
     private lateinit var btnDialogLogout: Button
-    private lateinit var verifydialog: Dialog
-    private lateinit var btnVerifySubmit: Button
-    private lateinit var btnVerifyCancel: Button
 
     private var doubleBackToExitPressedOnce: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {

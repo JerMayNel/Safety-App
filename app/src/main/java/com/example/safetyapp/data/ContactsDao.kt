@@ -25,10 +25,4 @@ interface ContactsDao {
 
     @Query("SELECT * FROM contacts WHERE id > :deletedId")
     suspend fun getContactsAfter(deletedId: Int): List<Contacts>
-
-    @Query("SELECT * FROM contacts WHERE id = 1")
-    suspend fun getEmergencyContacts(): List<Contacts>
-
-    @Query("SELECT * FROM contacts WHERE number = :number")
-    fun getContactsByNumber(number: String): Contacts
 }

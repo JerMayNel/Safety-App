@@ -14,7 +14,7 @@ import androidx.core.content.ContextCompat
 class SplashScreenActivity : AppCompatActivity() {
 
     private val SPLASH_TIME_OUT: Long = 1000
-    private val SEND_SMS_PERMISSION_REQUEST_CODE = 1
+    private val PERMISSIONS_REQUEST_CODE = 123
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,16 +24,23 @@ class SplashScreenActivity : AppCompatActivity() {
         if (ContextCompat.checkSelfPermission(
                 this,
                 Manifest.permission.SEND_SMS
+            ) != PackageManager.PERMISSION_GRANTED ||
+            ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.INTERNET
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            // Request the SEND_SMS permission
+            // Request the SEND_SMS and INTERNET permissions
             ActivityCompat.requestPermissions(
                 this,
-                arrayOf(Manifest.permission.SEND_SMS),
-                SEND_SMS_PERMISSION_REQUEST_CODE
+                arrayOf(
+                    Manifest.permission.SEND_SMS,
+                    Manifest.permission.INTERNET
+                ),
+                PERMISSIONS_REQUEST_CODE
             )
         } else {
-            // Permission is already granted, proceed to start the main activity
+            // Permissions are already granted, proceed to start the main activity
             startMainActivity()
         }
     }
@@ -44,12 +51,12 @@ class SplashScreenActivity : AppCompatActivity() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == SEND_SMS_PERMISSION_REQUEST_CODE) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permission granted, proceed to start the main activity
+        if (requestCode == PERMISSIONS_REQUEST_CODE) {
+            if (grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
+                // Permissions granted, proceed to start the main activity
                 startMainActivity()
             } else {
-                // Permission denied, handle accordingly (e.g., show a message)
+                // Permissions denied, handle accordingly (e.g., show a message)
             }
         }
     }

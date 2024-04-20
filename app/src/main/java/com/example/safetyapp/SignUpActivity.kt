@@ -7,8 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.safetyapp.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.local.Persistence
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -62,6 +60,9 @@ class SignUpActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show()
             }
+        }
+        binding.signInBtn.setOnClickListener{
+            startActivity(Intent(this, LogInActivity::class.java))
         }
     }
 }

@@ -50,17 +50,42 @@ class LogInActivity : AppCompatActivity() {
                                                 Toast.makeText(this@LogInActivity, "Welcome back, $name! Your phone number is $phone", Toast.LENGTH_SHORT).show()
                                                 startActivity(Intent(this@LogInActivity, MainScreen::class.java))
                                                 finish()
+                                            } else {
+                                                // If no user data found, delete the account
+                                                user.delete().addOnCompleteListener {
+                                                    if (it.isSuccessful) {
+                                                        Toast.makeText(this@LogInActivity, "Account deleted due to missing data", Toast.LENGTH_SHORT).show()
+                                                    } else {
+                                                        Toast.makeText(this@LogInActivity, "Failed to delete account", Toast.LENGTH_SHORT).show()
+                                                    }
+                                                }
                                             }
                                         }
 
                                         override fun onCancelled(error: DatabaseError) {
                                             // Handle error
                                             Toast.makeText(this@LogInActivity, "Failed to retrieve user data", Toast.LENGTH_SHORT).show()
+                                            // Delete the account if failed to retrieve data
+                                            user.delete().addOnCompleteListener {
+                                                if (it.isSuccessful) {
+                                                    Toast.makeText(this@LogInActivity, "Account deleted due to failed data retrieval", Toast.LENGTH_SHORT).show()
+                                                } else {
+                                                    Toast.makeText(this@LogInActivity, "Failed to delete account", Toast.LENGTH_SHORT).show()
+                                                }
+                                            }
                                         }
                                     })
                                 }
                             } else {
                                 Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show()
+                                // If login failed, delete the account
+                                auth.currentUser?.delete()?.addOnCompleteListener {
+                                    if (it.isSuccessful) {
+                                        Toast.makeText(this@LogInActivity, "Account deleted due to login failure", Toast.LENGTH_SHORT).show()
+                                    } else {
+                                        Toast.makeText(this@LogInActivity, "Failed to delete account", Toast.LENGTH_SHORT).show()
+                                    }
+                                }
                             }
                         }
                 } else {
@@ -73,4 +98,3 @@ class LogInActivity : AppCompatActivity() {
         }
     }
 }
-

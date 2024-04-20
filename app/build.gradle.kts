@@ -93,4 +93,5 @@ dependencies {
 
     implementation ("com.firebaseui:firebase-ui-auth:8.0.0")
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
+    implementation ("com.squareup.okhttp3:okhttp:4.9.1")
 }

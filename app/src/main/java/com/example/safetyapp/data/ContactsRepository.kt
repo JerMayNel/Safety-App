@@ -23,10 +23,5 @@ class ContactsRepository(private val contactsDao: ContactsDao){
             contactsDao.updateId(contact.id, newId)
         }
     }
-    suspend fun getEmergencyContacts(): List<Contacts> {
-        return contactsDao.getEmergencyContacts()
-    }
-    suspend fun getContactsByNumber(number: String): Contacts {
-        return contactsDao.getContactsByNumber(number)
-    }
+
 }
