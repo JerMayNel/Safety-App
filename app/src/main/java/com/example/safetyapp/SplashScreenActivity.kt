@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -13,7 +14,7 @@ import androidx.core.content.ContextCompat
 @SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {
 
-    private val SPLASH_TIME_OUT: Long = 1000
+    private val SPLASH_TIME_OUT: Long = 4000
     private val PERMISSIONS_REQUEST_CODE = 123
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,6 +58,7 @@ class SplashScreenActivity : AppCompatActivity() {
                 startMainActivity()
             } else {
                 // Permissions denied, handle accordingly (e.g., show a message)
+                Toast.makeText(this, "hahahahaha", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -68,7 +70,7 @@ class SplashScreenActivity : AppCompatActivity() {
                 finish()
             } catch (e: Exception) {
                 e.printStackTrace()
-                // Handle the exception, e.g., show a toast or log the error
+                Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
             }
         }, SPLASH_TIME_OUT)
     }

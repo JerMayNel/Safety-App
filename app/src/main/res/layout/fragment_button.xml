@@ -87,13 +87,14 @@
         </LinearLayout>
 
         <ImageButton
+            android:id="@+id/emergency_button"
             android:layout_width="250dp"
             android:layout_height="250dp"
+            android:src="@drawable/button"
+            android:background="@color/fui_transparent"
             android:layout_gravity="center"
             android:layout_marginTop="25dp"
-            android:background='@android:color/transparent'
-            android:scaleType="fitCenter"
-            android:src="@drawable/button" />
+            android:scaleType="fitCenter" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -101,6 +102,7 @@
             android:fontFamily="sans-serif"
             android:text="PRESS BUTTON FOR EMERGENCY"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:layout_marginTop="10dp"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_gravity="center"/>

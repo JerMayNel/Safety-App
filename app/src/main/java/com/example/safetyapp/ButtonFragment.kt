@@ -5,18 +5,24 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
+import android.net.Uri
 import android.os.Bundle
 import android.telephony.SmsManager
+import android.telephony.ims.ImsManager
+import android.telephony.ims.ImsRcsManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.safetyapp.data.ContactsViewModel
+import com.google.firebase.dynamiclinks.DynamicLink
+import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
 
 class ButtonFragment : Fragment() {
     private lateinit var contactsViewModel: ContactsViewModel
@@ -29,7 +35,7 @@ class ButtonFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_button, container, false)
 
-        val emergencyButton: Button = view.findViewById(R.id.emergency_button)
+        val emergencyButton: ImageButton = view.findViewById(R.id.emergency_button)
 
         // Initialize ContactsViewModel
         contactsViewModel = ViewModelProvider(this).get(ContactsViewModel::class.java)
@@ -118,17 +124,26 @@ class ButtonFragment : Fragment() {
             val longitude = location?.longitude
 
             if (latitude != null && longitude != null) {
-                val mapLink = StringBuilder("www.google.com/maps/search/?api=1&query=$latitude,$longitude")
-                val link = mapLink.toString()
-                val message = "I need help! My current location is at $link. Please send help!"
+                val mapLink = "https://maps.google.com/maps?q=$latitude,$longitude"
 
-                // Get contacts from ViewModel
-                contactsViewModel.readAllData.observe(viewLifecycleOwner) { contacts ->
-                    // Send SMS to each contact
-                    contacts.forEach { contact ->
-                        sendSMS(contact.number, message)
+                FirebaseDynamicLinks.getInstance().createDynamicLink()
+                    .setLink(Uri.parse(mapLink))
+                    .setDomainUriPrefix("https://myfinelocation.page.link")
+                    .buildShortDynamicLink()
+                    .addOnSuccessListener { result ->
+                        val shortLink = result.shortLink.toString().removePrefix("https://")
+                        val message = "I need help! My current location is $shortLink"
+
+                        contactsViewModel.readAllData.observe(viewLifecycleOwner) { contacts ->
+                            for (contact in contacts) {
+                                sendSMS(contact.number, message)
+                            }
+                        }
                     }
-                }
+                    .addOnFailureListener { ex ->
+                        Toast.makeText(requireContext(), "Failed to create dynamic link", Toast.LENGTH_SHORT).show()
+                        ex.printStackTrace()
+                    }
             } else {
                 Toast.makeText(requireContext(), "Unable to retrieve current location", Toast.LENGTH_SHORT).show()
             }
@@ -136,8 +151,6 @@ class ButtonFragment : Fragment() {
             Toast.makeText(requireContext(), "Location permission not granted or location service disabled", Toast.LENGTH_SHORT).show()
         }
     }
-
-
 
     private fun sendSMS(phoneNumber: String, message: String) {
         try {

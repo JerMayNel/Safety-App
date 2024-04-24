@@ -94,4 +94,8 @@ dependencies {
     implementation ("com.firebaseui:firebase-ui-auth:8.0.0")
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
     implementation ("com.squareup.okhttp3:okhttp:4.9.1")
+    implementation ("com.fasterxml.jackson.core:jackson-databind:2.12.5")
+    implementation ("com.google.firebase:firebase-dynamic-links")
+    implementation ("com.google.firebase:firebase-analytics")
+
 }

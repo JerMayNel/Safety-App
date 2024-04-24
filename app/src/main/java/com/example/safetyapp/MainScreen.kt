@@ -29,6 +29,9 @@ class MainScreen : AppCompatActivity() {
     private lateinit var dialog: Dialog
     private lateinit var btndialogCancel: Button
     private lateinit var btnDialogLogout: Button
+    private lateinit var verifydialog: Dialog
+    private lateinit var btnverifyCancel: Button
+    private lateinit var btnverifySubmit: Button
 
     private var doubleBackToExitPressedOnce: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -84,7 +87,7 @@ class MainScreen : AppCompatActivity() {
             .replace(R.id.fragmentContainer, ButtonFragment::class.java, null)
             .commit()
 
-        homelayout.setOnClickListener { v: View ->
+        homelayout.setOnClickListener { _: View ->
             if (selectedTab != 1) {
 
                 supportFragmentManager.beginTransaction()
