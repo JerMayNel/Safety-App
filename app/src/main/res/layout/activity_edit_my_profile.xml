@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@color/backgroundcolor"
     tools:context=".EditMyProfile">
 
     <LinearLayout
@@ -63,8 +63,8 @@
             android:inputType="text"
             android:padding="18dp"
             android:text="Kaedehara Kazuha"
-            android:textColor="@color/white"
-            android:textColorHint="@color/gray" />
+            android:textColor="@color/primary_text"
+            android:textColorHint="@color/secondary_text" />
 
         <EditText
             android:id="@+id/contactnumber"
@@ -73,8 +73,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:hint=" Your Number"
-            android:textColorHint="@color/gray"
-            android:textColor="@color/white"
+            android:textColorHint="@color/secondary_text"
+            android:textColor="@color/primary_text"
             android:inputType="number"
             android:background="@drawable/rounded_corner"
             android:text="09987654321"

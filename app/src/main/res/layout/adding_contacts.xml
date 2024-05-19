@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@color/backgroundcolor"
     tools:context=".database.add.AddContacts">
 
     <LinearLayout
@@ -59,8 +59,8 @@
             android:hint=" Name"
             android:inputType="text"
             android:padding="18dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/gray" />
+            android:textColor="@color/primary_text"
+            android:textColorHint="@color/secondary_text" />
 
         <EditText
             android:id="@+id/adding_contacts_phone"
@@ -69,8 +69,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:hint=" Enter Number"
-            android:textColorHint="@color/gray"
-            android:textColor="@color/white"
+            android:textColorHint="@color/secondary_text"
+            android:textColor="@color/primary_text"
             android:inputType="number"
             android:background="@drawable/rounded_corner"
             android:padding="18dp"
@@ -83,8 +83,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:hint=" Relation"
-            android:textColorHint="@color/gray"
-            android:textColor="@color/white"
+            android:textColorHint="@color/secondary_text"
+            android:textColor="@color/primary_text"
             android:inputType="text"
             android:background="@drawable/rounded_corner"
             android:padding="18dp"

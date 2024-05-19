@@ -3,7 +3,7 @@
     <corners android:radius="8dp" /> <!-- Adjust the radius as needed -->
 
     <!-- Background color -->
-    <solid android:color="#38304d" />
+    <solid android:color="@color/contacts_color" />
 
     <!-- Border color and width (optional) -->
     <!-- <stroke

@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -18,6 +20,7 @@ class ProfileFragment : Fragment() {
     private lateinit var nameTextView: TextView
     private lateinit var phoneTextView: TextView
     private lateinit var database: DatabaseReference
+    private lateinit var themeSwitch: SwitchCompat
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,10 +30,22 @@ class ProfileFragment : Fragment() {
 
         nameTextView = view.findViewById(R.id.nameTextView)
         phoneTextView = view.findViewById(R.id.phoneTextView)
-
+        themeSwitch = view.findViewById(R.id.theme_switch)
+        themeSwitch.isChecked = isDarkThemeEnabled()
         database = FirebaseDatabase.getInstance().getReference("users")
 
         fetchAndDisplayUserData()
+
+        // Set up a listener for the switch to detect when its state changes
+        themeSwitch.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                // Dark theme selected
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                // Light theme selected
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
 
         return view
     }
@@ -65,5 +80,10 @@ class ProfileFragment : Fragment() {
                 }
             })
         }
+    }
+
+    // Function to check if the dark theme is currently enabled
+    private fun isDarkThemeEnabled(): Boolean {
+        return AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES
     }
 }

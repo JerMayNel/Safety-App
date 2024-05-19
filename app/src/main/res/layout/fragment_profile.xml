@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -27,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/primary_text"
             android:textSize="22dp"
             android:textStyle="bold"/>
 
@@ -36,19 +37,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textColor="#817E89"
+            android:textColor="@color/secondary_text"
             android:textSize="12sp"/>
 
         <LinearLayout
-            android:background="@drawable/round_back_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginTop="40dp"
+            android:background="@drawable/round_back_button"
+            android:clickable="true"
             android:orientation="vertical"
             android:padding="15dp"
-            android:clickable="true">
+            android:elevation="5dp">
 
             <RelativeLayout
                 android:id="@+id/edit_profile_button"
@@ -60,100 +62,137 @@
                     android:id="@+id/edit_profile_icon"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/edit_icon"
                     android:background="@drawable/round_back_edit"
-                    android:padding="12dp"/>
+                    android:padding="12dp"
+                    android:src="@drawable/edit_icon" />
 
                 <TextView
-                    android:layout_marginStart="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical='true'
-                    android:text="Edit Profile"
-                    android:textColor="#FFFFFF"
-                    android:textStyle="bold"
+                    android:layout_marginStart="20dp"
                     android:layout_toEndOf="@id/edit_profile_icon"
-                    />
+                    android:text="Edit Profile"
+                    android:textColor="@color/primary_text"
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/right_arrow_icon"
                     android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"/>
-
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/right_arrow_icon" />
 
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/change_email"
-                android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:onClick="ChangeEmail">
 
                 <ImageView
                     android:id="@+id/change_email_icon"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/baseline_email_24"
                     android:background="@drawable/round_back_edit"
-                    android:padding="12dp"/>
+                    android:padding="12dp"
+                    android:src="@drawable/baseline_email_24"
+                    android:tint="@color/white"/>
 
                 <TextView
-                    android:layout_marginStart="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="Change your email"
-                    android:textColor="#FFFFFF"
-                    android:textStyle="bold"
+                    android:layout_marginStart="20dp"
                     android:layout_toEndOf="@id/change_email_icon"
-                    />
+                    android:text="Change your email"
+                    android:textColor="@color/primary_text"
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/right_arrow_icon"
                     android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"/>
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/right_arrow_icon" />
 
 
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/change_password"
-                android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:onClick="ChangePassword">
 
                 <ImageView
                     android:id="@+id/change_password_icon"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/baseline_key_24"
                     android:background="@drawable/round_back_edit"
-                    android:padding="12dp"/>
+                    android:padding="12dp"
+                    android:src="@drawable/baseline_key_24"
+                    app:tint="@color/white" />
 
                 <TextView
-                    android:layout_marginStart="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="Change your password"
-                    android:textColor="#FFFFFF"
-                    android:textStyle="bold"
+                    android:layout_marginStart="20dp"
                     android:layout_toEndOf="@id/change_password_icon"
-                    />
+                    android:text="Change your password"
+                    android:textColor="@color/primary_text"
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/right_arrow_icon"
                     android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"/>
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/right_arrow_icon" />
 
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/switch_theme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:onClick="ChangePassword">
+
+                <ImageView
+                    android:id="@+id/switch_theme_img"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/round_back_edit"
+                    android:padding="12dp"
+                    android:src="@drawable/night_theme" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@id/switch_theme_img"
+                    android:text="Dark Theme"
+                    android:textColor="@color/primary_text"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/theme_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primary_text"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:theme="@style/Switch"
+                    tools:ignore="UseSwitchCompatOrMaterialXml"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:checked="true"/>
 
             </RelativeLayout>
         </LinearLayout>
@@ -164,11 +203,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:orientation="vertical"
             android:padding="15dp"
             android:clickable="true"
-            android:focusable="true">
+            android:focusable="true"
+            android:elevation="5dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -189,7 +229,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical='true'
                     android:text="About Us"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/primary_text"
                     android:textStyle="bold"
                     android:layout_toEndOf="@id/info_icon"
                     />
@@ -211,12 +251,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:orientation="vertical"
             android:padding="15dp"
             android:clickable="true"
             android:focusable="true"
-            android:onClick="Logout">>
+            android:onClick="Logout"
+            android:elevation="5dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -236,7 +277,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical='true'
                     android:text="Log Out"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/primary_text"
                     android:textStyle="bold"
                     android:layout_toEndOf="@id/log_out_icon"
                     />

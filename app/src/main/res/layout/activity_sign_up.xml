@@ -5,7 +5,7 @@
     android:id="@+id/main_signup"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:background="@drawable/background"
+    android:background="@color/backgroundcolor"
     tools:context=".SignUpActivity">
 
     <LinearLayout
@@ -25,7 +25,7 @@
             android:fontFamily="sans-serif"
             android:text="Create Account"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/white"
+            android:textColor="@color/primary_text"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -37,7 +37,7 @@
             android:layout_marginLeft="16dp"
             android:fontFamily="sans-serif"
             android:text="Hi there! Please fill the input below"
-            android:textColor="#817E89" />
+            android:textColor="@color/secondary_text" />
 
         <EditText
             android:id="@+id/full_name_edittext"
@@ -50,8 +50,8 @@
             android:hint=" Full Name"
             android:inputType="text"
             android:padding="18dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/gray" />
+            android:textColor="@color/primary_text"
+            android:textColorHint="@color/secondary_text" />
 
         <EditText
             android:id="@+id/email_edittext"
@@ -64,8 +64,8 @@
             android:hint=" Email"
             android:inputType="textEmailAddress"
             android:padding="18dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/gray" />
+            android:textColor="@color/primary_text"
+            android:textColorHint="@color/secondary_text" />
 
         <EditText
             android:id="@+id/phone_number_edittext"
@@ -78,8 +78,8 @@
             android:hint=" Phone Number"
             android:inputType="text|phone"
             android:padding="18dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/gray" />
+            android:textColor="@color/primary_text"
+            android:textColorHint="@color/secondary_text" />
 
         <EditText
             android:id="@+id/password_edittext"
@@ -92,8 +92,8 @@
             android:hint=" Confirm Password"
             android:inputType="textPassword"
             android:padding="18dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/gray" />
+            android:textColor="@color/primary_text"
+            android:textColorHint="@color/secondary_text" />
 
         <EditText
             android:id="@+id/confirm_password_edittext"
@@ -106,8 +106,8 @@
             android:hint=" Password"
             android:inputType="textPassword"
             android:padding="18dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/gray" />
+            android:textColor="@color/primary_text"
+            android:textColorHint="@color/secondary_text" />
 
         <Button
             android:id="@+id/create_account_Btn"
@@ -118,7 +118,7 @@
             android:backgroundTint="@color/cyan"
             android:padding="13dp"
             android:text="Create Account"
-            android:textColor="#222430"
+            android:textColor="@color/backgroundcolor"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -136,7 +136,7 @@
                 android:layout_marginLeft="16dp"
                 android:fontFamily="sans-serif"
                 android:text="Already have an account?"
-                android:textColor="#817E89" />
+                android:textColor="@color/secondary_text" />
 
             <Button
                 android:id="@+id/sign_in_btn"

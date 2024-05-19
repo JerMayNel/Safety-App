@@ -13,8 +13,8 @@
 
     <style name='Switch' parent="Theme.AppCompat.Light">
         <item name="colorControlActivated">@color/cyan</item>
-        <item name="colorSwitchThumbNormal">@color/switchcolor</item>
-        <item name="android:colorForeground">@color/secondary_text</item>
+        <item name="colorSwitchThumbNormal">#FFFFFF</item>
+        <item name="android:colorForeground">#99FFFFFF</item>
 
     </style>
 </resources>

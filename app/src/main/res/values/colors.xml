@@ -2,14 +2,20 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="cyan">#0DF5E3</color>
-    <color name="cyan_20">#330DF5E3</color>
+    <color name="cyan">#2239bb</color>
+    <color name="cyan_20">#332239BB</color>
+    <color name="primary_text">#000000</color>
+    <color name="secondary_text">#817E89</color>
     <color name='gray'>#817E89</color>
     <color name="dark_blue">#222430</color>
     <color name="off_white">#F5F5F5</color>
-    <color name="backgroundcolor">#222430</color>
+    <color name="backgroundcolor">#e9e9e9</color>
     <color name="edit_profile_color">#6124b1</color>
     <color name="about_us_color">#E6A326</color>
     <color name="log_out_color">#D95F69</color>
+    <color name="cardbackground">#FFFFFF</color>
+    <color name="switchcolor">#da0000</color>
+    <color name="contacts_color">#ebebf0</color>
+    <color name="navigation_bar_color">#FFFFFF</color>
 
 </resources>

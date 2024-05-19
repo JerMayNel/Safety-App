@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@color/backgroundcolor"
     tools:context=".AboutUs">
 
     <LinearLayout
@@ -64,7 +64,7 @@
             android:fontFamily="sans-serif"
             android:text="Version X.X"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="#B3FFFFFF"
+            android:textColor="@color/secondary_text"
             android:textSize="14sp"
             android:textStyle="bold"
             android:layout_gravity="center"/>
@@ -87,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:text="Development Team"
                 android:textSize="20sp"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/primary_text"
                 android:textStyle="bold"
                 android:layout_toEndOf="@id/info_icon"
                 />
@@ -111,7 +111,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical='true'
                     android:text="Janel Antolin"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/primary_text"
                     android:textStyle="bold"
                     android:layout_toEndOf="@id/info_icon"/>
 
@@ -125,7 +125,7 @@
                     android:layout_marginEnd="10dp"
                     android:fontFamily="sans-serif"
                     android:text="Lead Developer"
-                    android:textColor="#99FFFFFF"
+                    android:textColor="@color/secondary_text"
                     android:textSize="10sp" />
 
             </RelativeLayout>
@@ -149,7 +149,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical='true'
                     android:text="Jeramelle Dela Cruz"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/primary_text"
                     android:textStyle="bold"
                     android:layout_toEndOf="@id/info_icon2"/>
 
@@ -163,7 +163,7 @@
                     android:layout_marginEnd="10dp"
                     android:fontFamily="sans-serif"
                     android:text="Lead Developer"
-                    android:textColor="#99FFFFFF"
+                    android:textColor="@color/secondary_text"
                     android:textSize="10sp" />
 
             </RelativeLayout>
@@ -187,7 +187,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical='true'
                     android:text="Mi-ro Dela Cruz"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/primary_text"
                     android:textStyle="bold"
                     android:layout_toEndOf="@id/info_icon3"
                     />
@@ -213,7 +213,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical='true'
                     android:text="Revin Jay Delgado"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/primary_text"
                     android:textStyle="bold"
                     android:layout_toEndOf="@id/info_icon4"
                     />
@@ -239,7 +239,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical='true'
                     android:text="Angela Olaera"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/primary_text"
                     android:textStyle="bold"
                     android:layout_toEndOf="@id/info_icon5"
                     />
@@ -265,7 +265,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical='true'
                     android:text="Jomari Sedanto"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/primary_text"
                     android:textStyle="bold"
                     android:layout_toEndOf="@id/info_icon6"
                     />

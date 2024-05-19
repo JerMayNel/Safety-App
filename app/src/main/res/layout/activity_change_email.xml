@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@color/backgroundcolor"
     tools:context=".ChangeEmail">
 
     <LinearLayout
@@ -55,7 +55,7 @@
             android:layout_marginLeft="16dp"
             android:fontFamily="sans-serif"
             android:text="Please be aware that changing your email will affect your account login. Make sure to use an email address you have access to, as this will be used for future account communication and password recovery."
-            android:textColor="#817E89" />
+            android:textColor="@color/secondary_text" />
 
         <LinearLayout
             android:background="@drawable/round_back_button"
@@ -86,7 +86,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Current Email"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/primary_text"
                     android:textStyle="bold"
                     android:layout_toEndOf="@id/info_icon"
                     />
@@ -98,7 +98,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="example@gmail.com"
-                    android:textColor="#80FFFFFF"
+                    android:textColor="@color/secondary_text"
                     android:textStyle="bold"
                     android:textSize="15sp"
                     android:layout_toEndOf="@id/info_icon"
@@ -110,18 +110,18 @@
                 android:id="@+id/emaillayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColorHint="@color/gray"
+                android:textColorHint="@color/secondary_text"
                 android:inputType="textEmailAddress"
                 android:layout_marginTop="15dp"
                 app:startIconDrawable="@drawable/baseline_email_24"
-                app:startIconTint="@color/white">
+                app:startIconTint="@color/primary_text">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/newEmailEditText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Enter your new email"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/primary_text" />
 
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>

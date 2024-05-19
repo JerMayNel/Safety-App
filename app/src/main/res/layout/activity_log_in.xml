@@ -5,7 +5,7 @@
     android:id="@+id/login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@color/backgroundcolor"
     tools:context=".LogInActivity">
 
     <LinearLayout
@@ -32,7 +32,7 @@
             android:layout_marginTop="16dp"
             android:fontFamily="sans-serif"
             android:text="Log In"
-            android:textColor="@color/white"
+            android:textColor="@color/primary_text"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
             android:text="Hi! Welcome"
-            android:textColor="#817E89"
+            android:textColor="@color/secondary_text"
             android:layout_gravity="start"/>
 
         <EditText
@@ -55,8 +55,8 @@
             android:layout_marginTop="25dp"
             android:hint="Enter email or phone number"
             android:drawablePadding="10dp"
-            android:textColorHint="@color/gray"
-            android:textColor="@color/white"
+            android:textColorHint="@color/secondary_text"
+            android:textColor="@color/primary_text"
             android:inputType="text"
             android:background="@drawable/rounded_corner"
             android:padding="18dp"
@@ -67,13 +67,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:passwordToggleEnabled="true"
-            app:passwordToggleTint="@color/white"
-            android:textColorHint="@color/gray"
+            app:passwordToggleTint="@color/primary_text"
+            android:textColorHint="@color/secondary_text"
             app:hintTextColor="@android:color/transparent"
             android:inputType="textPassword"
             android:padding="10dp"
             app:startIconDrawable="@drawable/baseline_lock_24"
-            app:startIconTint="@color/white">
+            app:startIconTint="@color/primary_text">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/Password"
@@ -81,7 +81,7 @@
                 android:layout_height="match_parent"
                 android:inputType="textPassword"
                 android:hint="Password"
-                android:textColor="@color/white"
+                android:textColor="@color/primary_text"
                 android:background="@drawable/rounded_corner"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -95,7 +95,7 @@
             android:backgroundTint="@color/cyan"
             android:padding="13dp"
             android:text="Log In"
-            android:textColor="#222430"
+            android:textColor="@color/backgroundcolor"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -123,7 +123,7 @@
                 android:layout_marginLeft="16dp"
                 android:fontFamily="sans-serif"
                 android:text="Don't have an account?"
-                android:textColor="#817E89" />
+                android:textColor="@color/secondary_text" />
 
             <Button
                 android:id="@+id/SignUp_btn"
