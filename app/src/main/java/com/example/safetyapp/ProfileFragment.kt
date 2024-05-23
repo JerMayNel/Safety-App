@@ -1,5 +1,6 @@
 package com.example.safetyapp
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -22,6 +23,11 @@ class ProfileFragment : Fragment() {
     private lateinit var database: DatabaseReference
     private lateinit var themeSwitch: SwitchCompat
 
+    companion object {
+        private const val PREFS_NAME = "prefs"
+        private const val DARK_MODE_KEY = "dark_mode"
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,24 +37,29 @@ class ProfileFragment : Fragment() {
         nameTextView = view.findViewById(R.id.nameTextView)
         phoneTextView = view.findViewById(R.id.phoneTextView)
         themeSwitch = view.findViewById(R.id.theme_switch)
-        themeSwitch.isChecked = isDarkThemeEnabled()
         database = FirebaseDatabase.getInstance().getReference("users")
+
+        val sharedPreferences = requireActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        val isDarkModeEnabled = sharedPreferences.getBoolean(DARK_MODE_KEY, false)
+        themeSwitch.isChecked = isDarkModeEnabled
 
         fetchAndDisplayUserData()
 
-        // Set up a listener for the switch to detect when its state changes
         themeSwitch.setOnCheckedChangeListener { _, isChecked ->
+            val editor = sharedPreferences.edit()
+            editor.putBoolean(DARK_MODE_KEY, isChecked)
+            editor.apply()
+
             if (isChecked) {
-                // Dark theme selected
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else {
-                // Light theme selected
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
         }
 
         return view
     }
+
 
     private fun fetchAndDisplayUserData() {
         val userId = FirebaseAuth.getInstance().currentUser?.uid

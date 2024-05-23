@@ -1,33 +1,48 @@
 package com.example.safetyapp
 
-import android.Manifest
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
 import android.net.Uri
 import android.os.Bundle
 import android.telephony.SmsManager
-import android.telephony.ims.ImsManager
-import android.telephony.ims.ImsRcsManager
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
+import android.view.*
 import android.widget.ImageButton
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.safetyapp.R
 import com.example.safetyapp.data.ContactsViewModel
 import com.google.firebase.dynamiclinks.DynamicLink
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
 
-class ButtonFragment : Fragment() {
+class ButtonFragment : Fragment(), KeyEvent.Callback {
+
     private lateinit var contactsViewModel: ContactsViewModel
     private lateinit var locationManager: LocationManager
     private lateinit var locationListener: android.location.LocationListener
+    private var volumeUpPressedCount = 0
+    private val volumeUpButtonReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            if (intent?.action == Intent.ACTION_MEDIA_BUTTON) {
+                val keyEvent = intent.getParcelableExtra<KeyEvent>(Intent.EXTRA_KEY_EVENT)
+                if (keyEvent?.keyCode == KeyEvent.KEYCODE_VOLUME_UP && keyEvent.action == KeyEvent.ACTION_UP) {
+                    volumeUpPressedCount++
+                    if (volumeUpPressedCount == 3) {
+                        volumeUpPressedCount = 0 // Reset count for next gesture
+                        sendEmergencySMS()
+                    }
+                }
+            }
+        }
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,9 +64,9 @@ class ButtonFragment : Fragment() {
         }
 
         // Initialize location manager
-        locationManager = requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        locationManager =
+            requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
-        // Initialize location listener
         // Initialize location listener
         locationListener = object : android.location.LocationListener {
             override fun onLocationChanged(location: Location) {
@@ -63,7 +78,10 @@ class ButtonFragment : Fragment() {
 
             override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
                 // Log status changes if needed
-                Log.d("LocationListener", "Provider status changed: $provider, Status: $status")
+                Log.d(
+                    "LocationListener",
+                    "Provider status changed: $provider, Status: $status"
+                )
 
                 // Handle status changes if needed
             }
@@ -83,7 +101,6 @@ class ButtonFragment : Fragment() {
             }
         }
 
-
         // Request location updates
         try {
             locationManager.requestLocationUpdates(
@@ -99,21 +116,48 @@ class ButtonFragment : Fragment() {
         return view
     }
 
-    private fun checkPermissions(): Boolean {
-        return (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-    }
-    private fun isLocationEnabled(): Boolean {
-        val locationManager = requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+    override fun onResume() {
+        super.onResume()
+        // Register receiver for volume up button events
+        requireActivity().registerReceiver(
+            volumeUpButtonReceiver,
+            IntentFilter("android.intent.action.MEDIA_BUTTON")
+        )
     }
 
+    override fun onPause() {
+        super.onPause()
+        // Unregister receiver when fragment is not visible
+        requireActivity().unregisterReceiver(volumeUpButtonReceiver)
+    }
+
+    private fun checkPermissions(): Boolean {
+        return (ContextCompat.checkSelfPermission(
+            requireContext(),
+            android.Manifest.permission.SEND_SMS
+        ) == PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    android.Manifest.permission.ACCESS_FINE_LOCATION
+                ) == PackageManager.PERMISSION_GRANTED)
+    }
+
+    private fun isLocationEnabled(): Boolean {
+        val locationManager =
+            requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
+            LocationManager.NETWORK_PROVIDER
+        )
+    }
 
     private fun requestPermissions() {
-        ActivityCompat.requestPermissions(requireActivity(), arrayOf(
-            Manifest.permission.SEND_SMS,
-            Manifest.permission.ACCESS_FINE_LOCATION
-        ), PERMISSION_REQUEST_CODE)
+        requestPermissions(
+            arrayOf(
+                android.Manifest.permission.SEND_SMS,
+                android.Manifest.permission.ACCESS_FINE_LOCATION
+            ),
+            PERMISSION_REQUEST_CODE
+        )
     }
 
     private fun sendEmergencySMS() {
@@ -141,14 +185,26 @@ class ButtonFragment : Fragment() {
                         }
                     }
                     .addOnFailureListener { ex ->
-                        Toast.makeText(requireContext(), "Failed to create dynamic link", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            requireContext(),
+                            "Failed to create dynamic link",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         ex.printStackTrace()
                     }
             } else {
-                Toast.makeText(requireContext(), "Unable to retrieve current location", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Unable to retrieve current location",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         } else {
-            Toast.makeText(requireContext(), "Location permission not granted or location service disabled", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(),
+                "Location permission not granted or location service disabled",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
@@ -156,22 +212,36 @@ class ButtonFragment : Fragment() {
         try {
             val smsManager: SmsManager = SmsManager.getDefault()
             smsManager.sendTextMessage(phoneNumber, null, message, null, null)
-            Toast.makeText(requireContext(), "Emergency SMS sent successfully!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(),
+                "Emergency SMS sent successfully!",
+                Toast.LENGTH_SHORT
+            ).show()
         } catch (ex: Exception) {
             Toast.makeText(requireContext(), "Failed to send SMS", Toast.LENGTH_SHORT).show()
             ex.printStackTrace()
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        // Remove location updates when the fragment is destroyed
-        locationManager.removeUpdates(locationListener)
-    }
-
     companion object {
         private const val MIN_TIME_BW_UPDATES: Long = 5000
         private const val MIN_DISTANCE_CHANGE_FOR_UPDATES: Float = 10f // 10 meters
         private const val PERMISSION_REQUEST_CODE = 123
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun onKeyLongPress(keyCode: Int, event: KeyEvent?): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun onKeyUp(keyCode: Int, event: KeyEvent?): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun onKeyMultiple(keyCode: Int, count: Int, event: KeyEvent?): Boolean {
+        TODO("Not yet implemented")
     }
 }

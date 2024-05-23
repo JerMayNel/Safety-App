@@ -2,6 +2,7 @@ package com.example.safetyapp
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -16,12 +17,27 @@ class SplashScreenActivity : AppCompatActivity() {
 
     private val SPLASH_TIME_OUT: Long = 4000
     private val PERMISSIONS_REQUEST_CODE = 123
+    private val PREFS_NAME = "MyPrefs"
+    private val FIRST_TIME_FLAG = "first_time"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.pre_splash_activity)
 
-        // Check if the SEND_SMS permission is not granted
+        val sharedPrefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        val isFirstTime = sharedPrefs.getBoolean(FIRST_TIME_FLAG, true)
+
+        if (isFirstTime) {
+            // First time launching the app, request permissions and show theme selection
+            requestPermissionsAndShowThemeSelection()
+            sharedPrefs.edit().putBoolean(FIRST_TIME_FLAG, false).apply()
+        } else {
+            // Not the first time, proceed to start the main activity
+            startMainActivity()
+        }
+    }
+
+    private fun requestPermissionsAndShowThemeSelection() {
         if (ContextCompat.checkSelfPermission(
                 this,
                 Manifest.permission.SEND_SMS
@@ -41,8 +57,8 @@ class SplashScreenActivity : AppCompatActivity() {
                 PERMISSIONS_REQUEST_CODE
             )
         } else {
-            // Permissions are already granted, proceed to start the main activity
-            startMainActivity()
+            // Permissions are already granted, proceed to start the theme selection activity
+            startThemeSelectionActivity()
         }
     }
 
@@ -54,24 +70,26 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PERMISSIONS_REQUEST_CODE) {
             if (grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
-                // Permissions granted, proceed to start the main activity
-                startMainActivity()
+                // Permissions granted, proceed to start the theme selection activity
+                startThemeSelectionActivity()
             } else {
                 // Permissions denied, handle accordingly (e.g., show a message)
-                Toast.makeText(this, "hahahahaha", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Permissions denied", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
+    private fun startThemeSelectionActivity() {
+        Handler().postDelayed({
+            startActivity(Intent(this, ThemeSelectionActivity::class.java))
+            finish()
+        }, SPLASH_TIME_OUT)
+    }
+
     private fun startMainActivity() {
         Handler().postDelayed({
-            try {
-                startActivity(Intent(this, LogInActivity::class.java))
-                finish()
-            } catch (e: Exception) {
-                e.printStackTrace()
-                Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
-            }
+            startActivity(Intent(this, LogInActivity::class.java))
+            finish()
         }, SPLASH_TIME_OUT)
     }
 }

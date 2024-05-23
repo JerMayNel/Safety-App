@@ -15,6 +15,7 @@
 
 
     <application
+        android:name=".MyApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -37,7 +38,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
+            android:value="AIzaSyB3bAGJTATeWZhgj31u0Br-WF83q0Gr3GU" />
 
         <activity
             android:name=".MainScreen"
@@ -74,6 +75,10 @@
         <activity
             android:name=".database.add.AddContacts"
             android:exported="true" />
+        <activity
+            android:name=".ThemeSelectionActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".SplashScreenActivity"
             android:exported="true"
