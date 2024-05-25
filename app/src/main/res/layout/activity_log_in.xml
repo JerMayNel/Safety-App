@@ -73,7 +73,8 @@
             android:inputType="textPassword"
             android:padding="10dp"
             app:startIconDrawable="@drawable/baseline_lock_24"
-            app:startIconTint="@color/primary_text">
+            app:startIconTint="@color/primary_text"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/Password"
